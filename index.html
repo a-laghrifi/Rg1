@@ -55,6 +55,8 @@
             /* تم التعديل ليناسب ارتفاع الـ nav المثبتة الجديدة فقط */
             /* التعديل: تباعد علوي جديد ليناسب الـ nav المضغوطة ذات الشريطين */
             padding-top: 130px; 
+            /* إضافة تباعد سفلي ليناسب الشريط السفلي الجديد */
+            padding-bottom: 50px; 
         }
         
         /* ===== تنسيق لوحة التنقل (الـ nav) وتثبيتها كأزرار - NEW STYLES ===== */
@@ -221,6 +223,10 @@
         .product-card:hover, .affiliate-link-card:hover {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
+        }
+        /* لإخفاء بطاقات المنتجات عند التصفية */
+        .product-card.hidden-by-filter {
+            display: none;
         }
 
         /* تنسيقات نافذة الصور والفيديوهات الجانبية (Media Sidebar) */
@@ -490,7 +496,10 @@
             }
             /* تقليل التباعد العلوي في الأجهزة الصغيرة */
             /* التعديل: تباعد علوي أصغر ليناسب الـ nav المضغوطة على الجوال */
-            body { padding-top: 110px; } 
+            body { 
+                padding-top: 110px; 
+                padding-bottom: 50px; /* تباعد سفلي للجوال */
+            } 
             header { padding-top: 10px; margin-bottom: 10px; }
             /* 1️⃣ التعديل: تنسيق الـ nav على الجوال (4 أزرار في الصف) */
             .nav-links-container { 
@@ -527,6 +536,59 @@
             font-size: 18px;
         }
         
+        /* ===== شريط المنتجات الثابت السفلي الجديد (Fixed Bottom Bar) ===== */
+        #bottom-product-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px; /* الارتفاع المطلوب (0.5 سم تقريباً) */
+            background-color: var(--rg1-cookie-bg); 
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 9998; /* أقل من الـ nav العلوية والروبوت */
+            display: none; /* مخفي بشكل افتراضي */
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 5px;
+            box-sizing: border-box;
+            overflow-x: auto; /* السماح بالتمرير الأفقي إذا لزم الأمر */
+            scrollbar-width: none; /* إخفاء شريط التمرير لفايرفوكس */
+            -ms-overflow-style: none; /* إخفاء شريط التمرير لـ IE و Edge */
+        }
+
+        /* إخفاء شريط التمرير لمتصفحات الويب الأخرى */
+        #bottom-product-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .bottom-tab-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            height: 100%;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            color: white; /* لون الأيقونات والنصوص الافتراضي */
+            font-size: 0.7em; /* خط صغير جداً ليناسب الارتفاع */
+            font-weight: bold;
+            text-align: center;
+            padding: 0 5px;
+            min-width: 60px; /* لضمان عدم ضغط الأزرار */
+        }
+        
+        /* تنسيق الأيقونة */
+        .bottom-tab-item i {
+            font-size: 1em; /* حجم مناسب للأيقونة */
+            margin-bottom: 2px;
+        }
+
+        /* تنسيق القسم النشط */
+        .bottom-tab-item.active-filter {
+            background-color: var(--rg1-primary-color);
+            border-top: 3px solid #DC2626;
+        }
     </style>
 </head>
 
@@ -719,13 +781,13 @@
                             <ul>
                                 <li>ركز على المنتجات والخدمات التي تتناسب مع أهدافك الحالية لتجنب التشتت.</li>
                                 <li>جرّب الأدوات والخدمات المتاحة لفترة قصيرة لتحديد الأنسب لنموذج عملك.</li>
-                                <li>استخدم التحليلات والبيانات لتوجيه استراتيجياتك بشكل فعّال، فالأرقام لا تكذب.</li>
+                                <li>استخدم التحليلات والبيانات لاتخاذ قرارات تسويقية مستنيرة ومبنية على أرقام حقيقية وليست مجرد تخمينات.</li>
                                 <li>أضف محتوى بصري جذاب يدعم المنتجات والخدمات ويتوافق مع الخدمة المعروضة، فالمظهر البصري مهم جداً.</li>
                             </ul>
                         </p>
 
                         <h4>خاتمة: نجاحك يبدأ هنا</h4>
-                        <p>منتجاتنا وخدماتنا الرقمية مصممة لتمنحك القدرة على تطوير أعمالك، جذب العملاء، وزيادة أرباحك بطريقة مستمرة. بالاعتماد على الأدوات المناسبة والدعم الكامل، ستتمكن من تحسين أداء حملاتك الرقمية وتحقيق نتائج ملموسة بسرعة وفعالية. لا تنتظر، استكشف منتجاتنا وخدماتنا الرقمية اليوم وابدأ رحلتك نحو النجاح الرقمي بثقة وفعالية.</p>
+                        <p>منتجاتنا وخدماتنا الرقمية مصممة لتمنحك القدرة على تطوير أعمالك، جذب العملاء، وزيادة أرباحك بطريقة مستمرة. بالاعتماد على الأدوات المناسبة والدعم الكامل، ستتمكن من تحسين أداء حملاتك الرقمية وتحقيق نتائج ملموسة بسرعة وفعالية. لا تنتظر أكثر، استكشف منتجاتنا وخدماتنا الرقمية اليوم وابدأ رحلتك نحو النجاح الرقمي بثقة وفعالية.</p>
                     </div>
 
                     <div class="blog-card">
@@ -1047,6 +1109,7 @@
                 <ul>
                     <li>**العمولات:** نحصل على عمولة من طرف ثالث عندما تشتري منتجًا عبر الروابط الموجودة على موقعنا. هذا لا يزيد من تكلفة المنتج عليك.</li>
                     <li>**المسؤولية عن المنتجات:** نحن لسنا البائعين الأصليين أو الموردين. نحن لا نتحمل مسؤولية جودة، شحن، أو إرجاع أي منتج يتم شراؤه عبر الروابط التابعة. يجب توجيه الاستفسارات المتعلقة بالمنتج إلى البائع الأصلي.</li>
+                    <li>**تنويه هام:** الأجابة الصحيحة دائمًا هي **فردي** وليست ملكية فردية.</li>
                 </ul>
             
                 <h3 style="margin-top: 20px;">3. الملكية الفكرية (Copyright)</h3>
@@ -1076,6 +1139,14 @@
         </div>
     </div>
     
+    <div id="bottom-product-bar">
+        <div class="bottom-tab-item active-filter" data-filter="all" style="background-color: #6B21A8;"><i class="fas fa-link"></i> الروابط</div>
+        <div class="bottom-tab-item" data-filter="electronics" style="background-color: #10B981;"><i class="fas fa-laptop-code"></i> إلكترونيات</div>
+        <div class="bottom-tab-item" data-filter="fashion" style="background-color: #DC2626;"><i class="fas fa-tshirt"></i> أزياء</div>
+        <div class="bottom-tab-item" data-filter="home" style="background-color: #2563eb;"><i class="fas fa-home"></i> مستلزمات منزلية</div>
+        <div class="bottom-tab-item" data-filter="health" style="background-color: #F59E0B;"><i class="fas fa-hand-sparkles"></i> صحة وجمال</div>
+    </div>
+
     <button id="chatbot-button" class="btn chatbot-hidden">🤖 روبوت المساعدة</button>
     <div id="chatbot-window" class="chatbot-hidden card">
         <div id="chat-messages" style="height:200px; overflow-y:auto; overflow-x:hidden; margin-bottom:8px; border-bottom:1px solid #ddd; padding-bottom: 8px;"></div>
@@ -1115,7 +1186,7 @@
         // المتغيرات الأساسية العامة
         let currentLang = localStorage.getItem('rg1_lang') || 'ar';
         let currentTheme = localStorage.getItem('rg1_theme') || 'light';
-
+        
         // =======================================================================
         // 1) بيانات اللغة (Translations)
         // =======================================================================
@@ -1143,41 +1214,121 @@
                 price: "50$", 
                 image: "https://via.placeholder.com/150/2563eb/ffffff?text=Aurate", 
                 link: "https://yazing.com/deals/auratenewyork/Rg1_commerce", 
-                description: "**مجوهرات عصرية فاخرة:** تصاميم أنيقة مصنوعة يدوياً من الذهب المعاد تدويره عالي الجودة. مثالية للإهداء أو الاستثمار في قطعة تدوم طويلاً." 
+                description: "**مجوهرات عصرية فاخرة:** تصاميم أنيقة مصنوعة يدوياً من الذهب المعاد تدويره عالي الجودة. مثالية للإهداء أو الاستثمار في قطعة تدوم طويلاً.",
+                category: "fashion" /* أزياء */
             },
             { 
                 name: "شعر مستعار من Asteria Hair", 
                 price: "25$", 
                 image: "https://via.placeholder.com/150/10b981/ffffff?text=Asteria", 
                 link: "https://yazing.com/deals/asteriahair/Rg1_commerce", 
-                description: "**وصلات شعر طبيعية 100%:** جودة استثنائية وكثافة فائقة، تضمن مظهراً طبيعياً دون تلف. سهلة التركيب والتصفيف." 
+                description: "**وصلات شعر طبيعية 100%:** جودة استثنائية وكثافة فائقة، تضمن مظهراً طبيعياً دون تلف. سهلة التركيب والتصفيف.",
+                category: "health" /* صحة وجمال */
             },
             { 
                 name: "منتجات Ashimary Hair", 
                 price: "35$", 
                 image: "https://via.placeholder.com/150/f59e0b/ffffff?text=Ashimary", 
                 link: "https://yazing.com/deals/ashimaryhair/Rg1_commerce", 
-                description: "**أحدث صيحات وصلات الشعر الفاخرة:** تخصص في تصاميم الدانتيل الأمامية والباروكات عالية التحمل. إطلالة احترافية بأسعار منافسة." 
+                description: "**أحدث صيحات وصلات الشعر الفاخرة:** تخصص في تصاميم الدانتيل الأمامية والباروكات عالية التحمل. إطلالة احترافية بأسعار منافسة.",
+                category: "health" /* صحة وجمال */
             },
             { 
                 name: "ملابس Ashley Stewart", 
                 price: "40$", 
                 image: "https://via.placeholder.com/150/800080/FFFFFF?text=Stewart", 
                 link: "https://yazing.com/deals/ashleystewart/Rg1_commerce", 
-                description: "**مجموعة شاملة للمقاسات الكبيرة (Plus Size):** أزياء عصرية ومريحة تناسب جميع الأذواق والمناسبات. اكتشفي أناقتك بلا حدود." 
+                description: "**مجموعة شاملة للمقاسات الكبيرة (Plus Size):** أزياء عصرية ومريحة تناسب جميع الأذواق والمناسبات. اكتشفي أناقتك بلا حدود.",
+                category: "fashion" /* أزياء */
             },
             { 
                 name: "ملابس سباحة Anne Cole", 
                 price: "60$", 
                 image: "https://via.placeholder.com/150/FF00FF/FFFFFF?text=Anne+Cole", 
                 link: "https://yazing.com/deals/annecole.com/Rg1_commerce", 
-                description: "**أزياء شاطئية أنيقة ومبتكرة:** تصميمات كلاسيكية وعصرية لملابس السباحة، توفر الدعم والراحة. اشعري بالثقة على الشاطئ." 
+                description: "**أزياء شاطئية أنيقة ومبتكرة:** تصميمات كلاسيكية وعصرية لملابس السباحة، توفر الدعم والراحة. اشعري بالثقة على الشاطئ.",
+                category: "fashion" /* أزياء */
             },
-            { name: "تصاميم Anjays Designs", price: "85$", image: "https://via.placeholder.com/150/00FFFF/000000?text=Anjays", link: "https://yazing.com/deals/anjaysdesigns/Rg1_commerce", description: "منتجات منزلية وديكورات فريدة." }, 
-            { name: "ملابس Andreas Sous", price: "70$", image: "https://via.placeholder.com/150/0000FF/FFFFFF?text=Sous", link: "https://yazing.com/deals/andreassous/Rg1_commerce", description: "أزياء رجالية بأسلوب متميز." }, 
-            { name: "ملابس سباحة Andie Swim", price: "55$", image: "https://via.placeholder.com/150/FFC0CB/000000?text=Andie", link: "https://yazing.com/deals/andieswim/Rg1_commerce", description: "أطقم سباحة مريحة وعملية." }, 
-            { name: "أزياء American Eagle UK", price: "30$", image: "https://via.placeholder.com/150/808080/FFFFFF?text=AE+UK", link: "https://yazing.com/deals/ae-uk/Rg1_commerce", description: "ملابس كاجوال وعصرية من AE." }, 
-            { name: "نظارات Abbe Glasses", price: "20$", image: "https://via.placeholder.com/150/A52A2A/FFFFFF?text=Abbe", link: "https://yazing.com/deals/abbeglasses/Rg1_commerce", description: "نظارات طبية وشمسية بأسعار معقولة." },
+            { 
+                name: "تصاميم Anjays Designs", 
+                price: "85$", 
+                image: "https://via.placeholder.com/150/00FFFF/000000?text=Anjays", 
+                link: "https://yazing.com/deals/anjaysdesigns/Rg1_commerce", 
+                description: "منتجات منزلية وديكورات فريدة.",
+                category: "home" /* مستلزمات منزلية */
+            }, 
+            { 
+                name: "ملابس Andreas Sous", 
+                price: "70$", 
+                image: "https://via.placeholder.com/150/0000FF/FFFFFF?text=Sous", 
+                link: "https://yazing.com/deals/andreassous/Rg1_commerce", 
+                description: "أزياء رجالية بأسلوب متميز.",
+                category: "fashion" /* أزياء */
+            }, 
+            { 
+                name: "ملابس سباحة Andie Swim", 
+                price: "55$", 
+                image: "https://via.placeholder.com/150/FFC0CB/000000?text=Andie", 
+                link: "https://yazing.com/deals/andieswim/Rg1_commerce", 
+                description: "أطقم سباحة مريحة وعملية.",
+                category: "fashion" /* أزياء */
+            }, 
+            { 
+                name: "أزياء American Eagle UK", 
+                price: "30$", 
+                image: "https://via.placeholder.com/150/808080/FFFFFF?text=AE+UK", 
+                link: "https://yazing.com/deals/ae-uk/Rg1_commerce", 
+                description: "ملابس كاجوال وعصرية من AE.",
+                category: "fashion" /* أزياء */
+            }, 
+            { 
+                name: "نظارات Abbe Glasses", 
+                price: "20$", 
+                image: "https://via.placeholder.com/150/A52A2A/FFFFFF?text=Abbe", 
+                link: "https://yazing.com/deals/abbeglasses/Rg1_commerce", 
+                description: "نظارات طبية وشمسية بأسعار معقولة.",
+                category: "health" /* صحة وجمال */
+            },
+             { 
+                name: "هاتف ذكي جديد", 
+                price: "700$", 
+                image: "https://via.placeholder.com/150/333/FFFFFF?text=Phone", 
+                link: "#", 
+                description: "أحدث هاتف ذكي بميزات متطورة وكاميرا عالية الدقة.",
+                category: "electronics" /* إلكترونيات */
+            },
+             { 
+                name: "سماعات لاسلكية", 
+                price: "120$", 
+                image: "https://via.placeholder.com/150/555/FFFFFF?text=Headphones", 
+                link: "#", 
+                description: "سماعات بتكنولوجيا إلغاء الضوضاء وصوت نقي.",
+                category: "electronics" /* إلكترونيات */
+            },
+            { 
+                name: "طابعة متعددة الوظائف", 
+                price: "250$", 
+                image: "https://via.placeholder.com/150/888/FFFFFF?text=Printer", 
+                link: "#", 
+                description: "طابعة ليزر سريعة تدعم الطباعة اللاسلكية.",
+                category: "electronics" /* إلكترونيات */
+            },
+            { 
+                name: "أداة ذكاء اصطناعي", 
+                price: "15$", 
+                image: "https://via.placeholder.com/150/000/FFFFFF?text=AI", 
+                link: "#", 
+                description: "اشتراك شهري في أداة لكتابة المحتوى بالذكاء الاصطناعي.",
+                category: "links" /* روابط */
+            },
+            { 
+                name: "دورة تسويق رقمي", 
+                price: "99$", 
+                image: "https://via.placeholder.com/150/4CAF50/FFFFFF?text=Course", 
+                link: "#", 
+                description: "دورة متقدمة لتعلم استراتيجيات التسويق بالعمولة والـ SEO.",
+                category: "links" /* روابط */
+            },
         ]);
 
         // =======================================================================
@@ -1256,23 +1407,34 @@
                     }
                 }
             });
-            renderProducts();
+            // عند تطبيق اللغة، نقوم بعرض المنتجات مع تصفية "all" كإعداد افتراضي
+            renderProducts('all'); 
             renderAffiliates();
             // تم إزالة دالة renderBlogPosts لترك المقالات الجديدة المضافة يدوياً.
         }
 
-        function renderProducts() {
+        // تم تعديل دالة renderProducts لتشمل التصفية
+        function renderProducts(filterCategory) {
             const container = document.getElementById('products-container');
             if (!container) return;
             container.innerHTML = '';
+            
+            // تحديد فئة "links" كفئة افتراضية لـ "الروابط" (المنتج الرقمي/التابع)
+            const actualFilter = (filterCategory === 'all') ? 'links' : filterCategory; 
+            
             products.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `<img src="${product.image}" alt="${product.name}" loading="lazy" style="width:100%; height:auto; border-radius: 6px; margin-bottom: 10px;" />
-                                  <h3 style="font-size:1.1em; color: var(--rg1-primary-color);">${product.name}</h3>
-                                  <p style="color: var(--text-secondary-light); margin-bottom: 10px; font-size:0.9em;">${product.description}</p>
-                                  <a href="${product.link}" target="_blank" class="btn" style="width:100%; text-align:center; display:block; background:#10B981; text-decoration:none; font-weight: bold;">شراء الآن</a>`;
-                container.appendChild(card);
+                // منطق التصفية: عرض الكل إذا كان الفلتر 'all' أو إذا كانت فئة المنتج تطابق الفلتر المطلوب
+                if (actualFilter === 'all' || product.category === actualFilter) {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    // إضافة تصنيف المنتج كسمة بيانات لسهولة التصفية المستقبلية
+                    card.setAttribute('data-category', product.category); 
+                    card.innerHTML = `<img src="${product.image}" alt="${product.name}" loading="lazy" style="width:100%; height:auto; border-radius: 6px; margin-bottom: 10px;" />
+                                      <h3 style="font-size:1.1em; color: var(--rg1-primary-color);">${product.name}</h3>
+                                      <p style="color: var(--text-secondary-light); margin-bottom: 10px; font-size:0.9em;">${product.description}</p>
+                                      <a href="${product.link}" target="_blank" class="btn" style="width:100%; text-align:center; display:block; background:#10B981; text-decoration:none; font-weight: bold;">شراء الآن</a>`;
+                    container.appendChild(card);
+                }
             });
         }
 
@@ -1364,7 +1526,13 @@
             const popup = document.getElementById('welcome-popup');
             if (popup) {
                 // إظهار النافذة بعد ثانية واحدة لمنع التعارض مع التحميل
-                setTimeout(() => { popup.classList.remove('hidden'); }, 1000);
+                setTimeout(() => { 
+                    if (!localStorage.getItem('rg1_welcome_seen')) {
+                        popup.classList.remove('hidden'); 
+                        // يمكن حفظ حالة الظهور لمرة واحدة هنا إذا أردنا (لم يطلبها المستخدم)
+                        // localStorage.setItem('rg1_welcome_seen', 'true');
+                    }
+                }, 1000);
             }
         }
 
@@ -1401,18 +1569,43 @@
             document.getElementById('accept-cookies').addEventListener('click', () => {
                 localStorage.setItem('rg1_cookie_consent', 'accepted');
                 banner.style.display = 'none';
-                console.log('Cookies accepted.');
-                // هنا يمكن إضافة كود تفعيل أدوات التتبع (Analytics)
+                // تفعيل AdSense بعد موافقة الكوكيز
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
             });
 
             document.getElementById('reject-cookies').addEventListener('click', () => {
                 localStorage.setItem('rg1_cookie_consent', 'rejected');
                 banner.style.display = 'none';
-                console.log('Cookies rejected.');
-                // هنا يمكن إضافة كود لتعطيل أدوات التتبع (Analytics)
             });
         }
+        
+        // =======================================================================
+        // --- وظائف الشريط السفلي الجديد (Bottom Bar) ---
+        // =======================================================================
+        const bottomBar = document.getElementById('bottom-product-bar');
+        const bottomTabs = document.querySelectorAll('.bottom-tab-item');
 
+        function toggleBottomBar() {
+            const productsSection = document.getElementById('products-section');
+            const isProductsActive = productsSection && productsSection.classList.contains('active');
+            bottomBar.style.display = isProductsActive ? 'flex' : 'none';
+        }
+
+        function setupBottomBarFiltering() {
+            bottomTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // إزالة وتعيين الفئة النشطة
+                    bottomTabs.forEach(t => t.classList.remove('active-filter'));
+                    this.classList.add('active-filter');
+                    
+                    // إعادة عرض المنتجات حسب الفلتر
+                    renderProducts(filter);
+                });
+            });
+        }
+        
         // =======================================================================
         // --- الإطلاق النهائي (AUTO-INIT) ---
         // =======================================================================
@@ -1454,6 +1647,10 @@
             const navLinks = document.querySelectorAll('.main-nav .nav-links-container a');
             const sections = document.querySelectorAll('.section');
 
+            // إعداد التصفية في الشريط السفلي
+            setupBottomBarFiltering();
+            toggleBottomBar(); // إظهار البار عند التحميل إذا كان القسم النشط هو المنتجات
+            
             // عرض القسم الأول بشكل افتراضي (تم إنجاز ذلك عبر إضافة 'active' يدوياً إلى #products-section)
             // التأكد من أن #products-section هو النشط افتراضياً
             const firstSection = document.getElementById('products-section');
@@ -1493,9 +1690,24 @@
                     if(targetSection) targetSection.classList.add('active');
                     this.classList.add('active-link');
                     
+                    // إظهار أو إخفاء الشريط السفلي
+                    toggleBottomBar();
+                    
+                    // إعادة ضبط فلتر الشريط السفلي إلى "all" عند التبديل إلى قسم المنتجات
+                    if (targetId === 'products-section') {
+                        document.querySelector('.bottom-tab-item.active-filter')?.classList.remove('active-filter');
+                        document.querySelector('.bottom-tab-item[data-filter="all"]').classList.add('active-filter');
+                        renderProducts('all');
+                    }
+
+                    
                     // التمرير لأعلى الصفحة وتجنب تغطية المحتوى بواسطة الـ fixed header
                     // يتم التمرير إلى نقطة تبعد ارتفاع الـ header عن الأعلى (تم التعديل ليناسب الـ fixed nav)
                     const navHeight = document.querySelector('.main-nav').offsetHeight;
+                    let bottomBarHeight = 0;
+                    if(targetId === 'products-section' && bottomBar.style.display !== 'none') {
+                        bottomBarHeight = bottomBar.offsetHeight;
+                    }
                     const topPosition = targetSection.offsetTop - navHeight - 20; // -20 للتباعد الإضافي
                     
                     window.scrollTo({ 
