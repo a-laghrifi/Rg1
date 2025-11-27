@@ -1096,12 +1096,10 @@
                 <h3 style="margin-top: 20px;">3. حقوقك بموجب القانون العام لحماية البيانات (GDPR)</h3>
                 <p>إذا كنت مقيمًا في الاتحاد الأوروبي، يحق لك: الوصول، التصحيح، الحذف، والاعتراض على معالجة بياناتك. يمكنك ممارسة هذه الحقوق عن طريق الاتصال بنا عبر البريد الإلكتروني المذكور في صفحة "تواصل معنا".</p>
             </section>
-            
             <section id="terms-conditions-full" class="card section">
                 <h2 style="color: var(--rg1-primary-color);">⚖️ الشروط والأحكام لـ RG1 Commerce</h2>
                 <p style="color: var(--text-secondary-light);">تسري هذه الشروط عند استخدامك لموقعنا.</p>
-            
-                <h3 style="margin-top: 20px;">1. شروط الاستخدام وقبول الشروط</h3>
+              <h3 style="margin-top: 20px;">1. شروط الاستخدام وقبول الشروط</h3>
                 <p>يعد دخولك واستخدامك لموقع RG1 Commerce بمثابة موافقة كاملة على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على هذه الشروط، يجب عليك عدم استخدام الموقع.</p>
             
                 <h3 style="margin-top: 20px;">2. نظام التسويق بالعمولة (Affiliate Disclosure)</h3>
@@ -1142,18 +1140,11 @@
     <div id="bottom-product-bar">
         <div class="bottom-tab-item active-filter" data-filter="all" style="background-color: #6B21A8;"><i class="fas fa-link"></i> الروابط</div>
         <div class="bottom-tab-item" data-filter="electronics" style="background-color: #10B981;"><i class="fas fa-laptop-code"></i> إلكترونيات</div>
-        <div class="bottom-tab-item" data-filter="fashion" style="background-color: #DC2626;"><i class="fas fa-tshirt"></i> أزياء</div>
+        <div class="bottom-tab-item" data-filter="fashion" style="background-color: #DC2626;"><i class="fas fa-tshirt"></i> </div>
         <div class="bottom-tab-item" data-filter="home" style="background-color: #2563eb;"><i class="fas fa-home"></i> مستلزمات منزلية</div>
         <div class="bottom-tab-item" data-filter="health" style="background-color: #F59E0B;"><i class="fas fa-hand-sparkles"></i> صحة وجمال</div>
     </div>
-
-    <button id="chatbot-button" class="btn chatbot-hidden">🤖 روبوت المساعدة</button>
-    <div id="chatbot-window" class="chatbot-hidden card">
-        <div id="chat-messages" style="height:200px; overflow-y:auto; overflow-x:hidden; margin-bottom:8px; border-bottom:1px solid #ddd; padding-bottom: 8px;"></div>
-        <input id="chat-input" data-key="chatbot_placeholder" placeholder="اكتب سؤالك هنا..." style="width:100%; padding:8px; border-radius:8px; border:1px solid #ddd; box-sizing:border-box;" />
-        <button id="chatbot-close" class="btn" style="margin-top:8px; width:100%; background:#dc2626;">إغلاق الروبوت</button>
-    </div>
-
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -1206,9 +1197,18 @@
         const affiliatePlatforms = [{ name: 'Amazon', img: 'https://via.placeholder.com/50/FF9900/FFFFFF?text=AZ', link: '#' }, { name: 'Alibaba', img: 'https://via.placeholder.com/50/FF4500/FFFFFF?text=AB', link: '#' }, { name: 'Aliexpress', img: 'https://via.placeholder.com/50/FF0000/FFFFFF?text=AE', link: '#' }, { name: 'Jumia', img: 'https://via.placeholder.com/50/FFA500/000000?text=JU', link: '#' }, { name: 'Merjan', img: 'https://via.placeholder.com/50/000000/FFFFFF?text=MJ', link: '#' }, ];
 
         // =======================================================================
-        // 3) بيانات المنتجات (10 منتجات) - (تم تحسين الأوصاف)
+        // 3) بيانات المنتجات (تمت إضافة بطاقة الفيديو المطلوبة)
         // =======================================================================
         const products = Object.freeze([
+            { 
+                // **بطاقة الفيديو التي تظهر في فئة "fashion" (الأمر 3)**
+                name: "فيديو حصري: مجوهرات Aurate", 
+                price: "عرض خاص", 
+                image: "VIDEO_CARD_PLACEHOLDER", /* علامة لوضع الفيديو في دالة renderProducts */
+                link: "https://s.click.aliexpress.com/e/_c3Rfv8lL", 
+                description: "<a href='https://s.click.aliexpress.com/e/_c3Rfv8lL' target='_blank'><video controls style='width: 100%; border-radius: 5px;'><source src='3dfe4d3c-a65b-45fe-a789-cba2e1d753a5-h265-hd.mp4' type='video/mp4'>متصفحك لا يدعم تشغيل الفيديو.</video></a><p style='text-align:center; font-weight:bold; margin-top:5px; color:#2563eb;'>شاهد وتسوّق الآن!</p>",
+                category: "fashion" /* تم وضعه هنا حسب طلبك الأخير */
+            },
             { 
                 name: "منتجات Aurate New York", 
                 price: "50$", 
@@ -1353,44 +1353,10 @@
         ]);
 
         // =======================================================================
-        // 6) نظام ردود الروبوت الذكي (متعدد اللغات)
+        // 6) نظام ردود الروبوت الذكي (تم حذفه بالكامل)
         // =======================================================================
-        const chatbotResponses = {
-            'ar': {
-                'بحث عن منتج': 'للبحث عن المنتجات، يرجى زيارة قسم "المنتجات".',
-                'مرحباً': 'أهلاً بك! أنا روبوت RG1 Commerce، كيف يمكنني المساعدة اليوم؟',
-                'الواتساب': 'للتواصل عبر واتساب، يرجى النقر على الرابط في قسم "تواصل معنا".',
-                'غير مفهوم': 'عذراً، لم أفهم سؤالك. أنا أدعم الإجابة باللغة العربية والإنجليزية.',
-                'من نحن': 'أنا روبوت RG1 Commerce الذكي. مهمتي هي توجيهك في الموقع. نحن مشروع تسويق بالعمولة (Affiliate).',
-            },
-            'en': {
-                'بحث عن منتج': 'Please visit the "Products" section to browse.',
-                'مرحباً': 'Hello! I am the RG1 Commerce bot, how may I assist you today?',
-                'الواتساب': 'For WhatsApp contact, please click the link in the "Contact" section.',
-                'غير مفهوم': 'Sorry, I don\'t understand your question. I support answers in Arabic and English.',
-                'من نحن': 'I am the RG1 Commerce AI bot. I guide you through the site. We are an affiliate marketing project.',
-            }
-        };
-
-        function processUserQuery(query) {
-            const lowerQuery = query.toLowerCase();
-            const lang = currentLang; // تحديد لغة الرد بناءً على لغة الواجهة
-            let responseKey = 'غير مفهوم';
-
-            if (lowerQuery.includes('منتج') || lowerQuery.includes('product') || lowerQuery.includes('شراء') || lowerQuery.includes('buy')) {
-                responseKey = 'بحث عن منتج';
-            } else if (lowerQuery.includes('سلام') || lowerQuery.includes('مرحبا') || lowerQuery.includes('hello')) {
-                responseKey = 'مرحباً';
-            } else if (lowerQuery.includes('واتساب') || lowerQuery.includes('whatsapp') || lowerQuery.includes('تواصل') || lowerQuery.includes('contact')) {
-                responseKey = 'الواتساب';
-            } else if (lowerQuery.includes('من نحن') || lowerQuery.includes('about') || lowerQuery.includes('mission')) {
-                responseKey = 'من نحن';
-            }
-
-            const response = chatbotResponses[lang][responseKey];
-            setTimeout(() => { appendMessage(response, 'bot'); }, 800);
-        }
-
+        /* تم حذف كائنات ودوال الروبوت بالكامل هنا (الأمر 4) */
+        
         // =======================================================================
         // --- وظائف التشغيل التلقائي (AUTO FUNCTIONS) ---
         // =======================================================================
@@ -1413,7 +1379,7 @@
             // تم إزالة دالة renderBlogPosts لترك المقالات الجديدة المضافة يدوياً.
         }
 
-        // تم تعديل دالة renderProducts لتشمل التصفية
+        // تم تعديل دالة renderProducts لتشمل التصفية والفيديو (الأمر 3)
         function renderProducts(filterCategory) {
             const container = document.getElementById('products-container');
             if (!container) return;
@@ -1422,21 +1388,53 @@
             // تحديد فئة "links" كفئة افتراضية لـ "الروابط" (المنتج الرقمي/التابع)
             const actualFilter = (filterCategory === 'all') ? 'links' : filterCategory; 
             
+            // متغير لتخزين بطاقة الفيديو إذا كانت مطلوبة في الفلتر الحالي
+            let videoCardHtml = '';
+            
+            // تهيئة قائمة المنتجات المُراد عرضها
+            let productsToDisplay = [];
+
+            // تصفية المنتجات
             products.forEach(product => {
+                if (product.image === "VIDEO_CARD_PLACEHOLDER") {
+                    // إذا كان الفلتر المطلوب هو 'fashion' (حيث يتواجد الفيديو)
+                    if (filterCategory === 'fashion') {
+                        videoCardHtml = `<div class="product-card video-card-special">
+                                          <h3 style="font-size:1.1em; color: var(--rg1-primary-color); text-align:center;">${product.name}</h3>
+                                          <p style="color: var(--text-secondary-light); margin-bottom: 10px; font-size:0.9em; text-align:center;">${product.description}</p>
+                                        </div>`;
+                    }
+                    // لا تقم بإضافة بطاقة الفيديو إلى القائمة العادية
+                    return; 
+                }
+                
                 // منطق التصفية: عرض الكل إذا كان الفلتر 'all' أو إذا كانت فئة المنتج تطابق الفلتر المطلوب
                 if (actualFilter === 'all' || product.category === actualFilter) {
-                    const card = document.createElement('div');
-                    card.className = 'product-card';
-                    // إضافة تصنيف المنتج كسمة بيانات لسهولة التصفية المستقبلية
-                    card.setAttribute('data-category', product.category); 
-                    card.innerHTML = `<img src="${product.image}" alt="${product.name}" loading="lazy" style="width:100%; height:auto; border-radius: 6px; margin-bottom: 10px;" />
-                                      <h3 style="font-size:1.1em; color: var(--rg1-primary-color);">${product.name}</h3>
-                                      <p style="color: var(--text-secondary-light); margin-bottom: 10px; font-size:0.9em;">${product.description}</p>
-                                      <a href="${product.link}" target="_blank" class="btn" style="width:100%; text-align:center; display:block; background:#10B981; text-decoration:none; font-weight: bold;">شراء الآن</a>`;
-                    container.appendChild(card);
+                    productsToDisplay.push(product);
                 }
             });
+
+            // عرض بطاقة الفيديو أولاً (الأمر 3: تثبيت الفيديو في الواجهة)
+            if (videoCardHtml) {
+                container.innerHTML += videoCardHtml;
+            }
+
+            // عرض المنتجات المصفاة
+            productsToDisplay.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                // إضافة تصنيف المنتج كسمة بيانات لسهولة التصفية المستقبلية
+                card.setAttribute('data-category', product.category); 
+                
+                // تم تعديل هذا الجزء ليتضمن الأيقونة بدلاً من النص (الأمر 1)
+                card.innerHTML = `<img src="${product.image}" alt="${product.name}" loading="lazy" style="width:100%; height:auto; border-radius: 6px; margin-bottom: 10px;" />
+                                  <h3 style="font-size:1.1em; color: var(--rg1-primary-color);">${product.name}</h3>
+                                  <p style="color: var(--text-secondary-light); margin-bottom: 10px; font-size:0.9em;">${product.description}</p>
+                                  <a href="${product.link}" target="_blank" class="btn" style="width:100%; text-align:center; display:block; background:#10B981; text-decoration:none; font-weight: bold;"></a>`; /* النص محذوف ليتم استبداله بأيقونة عبر CSS */
+                container.appendChild(card);
+            });
         }
+
 
         function renderAffiliates() {
             const affiliatesGrid = document.getElementById('affiliates-grid');
@@ -1488,36 +1486,10 @@
         }
 
         // =======================================================================
-        // --- وظائف الـ Chatbot ---
+        // --- وظائف الـ Chatbot (تم حذفها بالكامل) ---
         // =======================================================================
-        const chatbotButton = document.getElementById('chatbot-button');
-        const chatbotWindow = document.getElementById('chatbot-window');
-        const chatbotClose = document.getElementById('chatbot-close');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-
-        if (chatbotButton && chatbotWindow && chatbotClose && chatInput) {
-            chatbotButton.addEventListener('click', () => { chatbotWindow.classList.toggle('chatbot-hidden'); });
-            chatbotClose.addEventListener('click', () => { chatbotWindow.classList.add('chatbot-hidden'); });
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && chatInput.value.trim() !== '') {
-                    const userMessage = chatInput.value.trim();
-                    appendMessage(userMessage, 'user');
-                    processUserQuery(userMessage);
-                    chatInput.value = '';
-                }
-            });
-        }
+        /* تم حذف دوال processUserQuery و appendMessage و chatbotResponses ومتغيرات الروبوت */
         
-        function appendMessage(text, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('text-sm', 'p-2', 'rounded-lg', 'max-w-[80%]', 'clear-both', 'mb-2');
-            if (sender === 'user') { messageDiv.classList.add('bg-blue-600', 'text-white', 'float-left'); } else { messageDiv.classList.add('bg-gray-200', 'float-right'); }
-            messageDiv.textContent = text;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
         // =======================================================================
         // --- وظائف الترحيب والـ PayPal ونموذج الاتصال ---
         // =======================================================================
@@ -1630,7 +1602,8 @@
                 contactForm.addEventListener('submit', handleContactFormSubmission);
             }
 
-            // إظهار زر الروبوت عند التمرير
+            // تم حذف كود إظهار زر الروبوت عند التمرير هنا (الأمر 4)
+            /*
             if (chatbotButton) {
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 200) {
@@ -1640,6 +1613,7 @@
                     }
                 });
             }
+            */
             
             console.log(`RG1 Commerce App Initialized: All requested features applied.`);
             
@@ -1722,3 +1696,5 @@
 </body>
 <form action="https://formspree.io/f/movzzyep" method="POST"><label>Your email:<input type="email" name="email"></label><label>Your message:<textarea name="message"></textarea></label><button type="submit">Send</button></form>
 </html>
+
+ 
